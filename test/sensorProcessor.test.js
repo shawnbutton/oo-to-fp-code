@@ -11,6 +11,11 @@ describe('process sensors characterization tests', () => {
         data: []
       },
       {
+        name: 'inactive is ignored',
+        data: [0],
+        inactive: true
+      },
+      {
         name: 'environmental is grouped in environmental',
         data: [0],
         temperature: 0,
