@@ -4,9 +4,7 @@
 const sut = require('../lib/sensorProcessor')
 
 describe('process sensors characterization tests', () => {
-
   it('should match expected', () => {
-
     const given = [
       {
         name: 'no data is ignored',
@@ -27,7 +25,7 @@ describe('process sensors characterization tests', () => {
       {
         name: 'no type is grouped in other',
         data: ['abc'],
-        temperature: 10,
+        temperature: 10
       }
     ]
 
