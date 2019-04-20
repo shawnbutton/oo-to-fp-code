@@ -1,0 +1,8 @@
+{
+  "name": "oo-to-fp-code",
+  "version": "1.0.0",
+  "description": "code samples for oo-to-fp presentation",
+  "main": "index.js",
+  "author": "Shawn Button <shawnbutton@gmail.com>",
+  "license": "MIT"
+}
