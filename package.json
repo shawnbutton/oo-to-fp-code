@@ -4,5 +4,15 @@
   "description": "code samples for oo-to-fp presentation",
   "main": "index.js",
   "author": "Shawn Button <shawnbutton@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "lint": "standard",
+    "lint-fix": "standard --fix",
+    "test": "jest --verbose --colors --detectOpenHandles",
+    "watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^24.7.1",
+    "standard": "^12.0.1"
+  }
 }
