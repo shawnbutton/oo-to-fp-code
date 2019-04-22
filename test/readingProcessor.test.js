@@ -1,9 +1,9 @@
 'use strict'
 /* eslint-env jest */
 
-const sut = require('../lib/sensorProcessor')
+const sut = require('../lib/readingProcessor')
 
-describe('process sensors characterization tests', () => {
+describe('process readings characterization tests', () => {
   it('should match expected', () => {
     const given = [
       {
@@ -66,7 +66,7 @@ describe('process sensors characterization tests', () => {
       ]
     }
 
-    const result = sut.processSensors(given)
+    const result = sut.processReadings(given)
 
     expect(result).toEqual(expected)
   })
