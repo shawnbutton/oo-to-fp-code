@@ -56,9 +56,9 @@ describe('process readings characterization tests', () => {
           'type': 'asset'
         }
       ],
-      'other': [
+      'vehicle': [
         {
-          'name': 'vehicle is grouped in vehicle',
+          'name': 'vehicle type is grouped in vehicle',
           'data': [
             'abc'
           ],
