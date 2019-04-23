@@ -28,9 +28,10 @@ describe('process readings characterization tests', () => {
         type: 'asset'
       },
       {
-        name: 'no type is grouped in other',
+        name: 'vehicle type is grouped in vehicle',
         data: ['abc'],
-        temperature: 10
+        temperature: 10,
+        type: 'vehicle'
       }
     ]
 
@@ -57,11 +58,12 @@ describe('process readings characterization tests', () => {
       ],
       'other': [
         {
-          'name': 'no type is grouped in other',
+          'name': 'vehicle is grouped in vehicle',
           'data': [
             'abc'
           ],
-          'temperature': 50
+          'temperature': 50,
+          'type': 'vehicle'
         }
       ]
     }
