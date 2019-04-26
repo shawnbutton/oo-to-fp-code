@@ -33,13 +33,13 @@ describe('process readings characterization tests', () => {
         temperature: 10,
         type: 'vehicle'
       }
-      // ,
-      // {
-      //   name: 'other types are ignored',
-      //   data: ['abc'],
-      //   temperature: 10,
-      //   type: 'other'
-      // }
+      ,
+      {
+        name: 'other types are ignored',
+        data: ['abc'],
+        temperature: 10,
+        type: 'other'
+      }
     ]
 
     const expected = {
