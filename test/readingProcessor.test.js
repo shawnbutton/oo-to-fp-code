@@ -8,12 +8,16 @@ describe('process readings characterization tests', () => {
     const given = [
       {
         name: 'no data is ignored',
-        data: []
+        data: [],
+        temperature: 0,
+        type: 'environmental'
       },
       {
         name: 'inactive is ignored',
         data: [0],
-        inactive: true
+        inactive: true,
+        temperature: 0,
+        type: 'environmental'
       },
       {
         name: 'environmental is grouped in environmental',
