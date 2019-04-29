@@ -5,8 +5,8 @@ const { clone } = require('ramda')
 
 const sut = require('../lib/readingProcessor')
 
-describe('process readings characterization tests', () => {
-  it('should match expected', () => {
+describe('process readings', () => {
+  it('characterization test', () => {
     const given = [
       {
         name: 'no data is ignored',
@@ -86,10 +86,94 @@ describe('process readings characterization tests', () => {
     expect(result).toEqual(expected)
   })
 
+  const buildReading = () => {
+    return {
+      data: [0],
+      temperature: 0,
+      type: 'default'
+    }
+  }
+
+  it('should ignore readings with no data', () => {
+    const given = buildReading()
+    given.data = []
+
+    const expected = {}
+
+    expect(sut.processReadings([given])).toEqual(expected)
+  })
+
+  it('should ignore readings that are inactive', () => {
+    const given = buildReading()
+    given.inactive = true
+
+    const expected = {}
+
+    expect(sut.processReadings([given])).toEqual(expected)
+  })
+
+  test('environmental is grouped', () => {
+    const given = buildReading()
+    given.type = 'environmental'
+
+    const expected = {
+      'environmental': [
+        {
+          'data': [0],
+          'temperature': 32,
+          'type': 'environmental'
+        }
+      ]
+    }
+
+    expect(sut.processReadings([given])).toEqual(expected)
+  })
+
+  test('asset is grouped', () => {
+    const given = buildReading()
+    given.type = 'asset'
+
+    const expected = {
+      'asset': [
+        {
+          'data': [0],
+          'temperature': 32,
+          'type': 'asset'
+        }
+      ]
+    }
+
+    expect(sut.processReadings([given])).toEqual(expected)
+  })
+
+  test('vehicle is grouped', () => {
+    const given = buildReading()
+    given.type = 'vehicle'
+
+    const expected = {
+      'vehicle': [
+        {
+          'data': [0],
+          'temperature': 32,
+          'type': 'vehicle'
+        }
+      ]
+    }
+
+    expect(sut.processReadings([given])).toEqual(expected)
+  })
+
+  test('other types are ignored', () => {
+    const given = buildReading()
+    given.type = 'something unknown'
+
+    expect(sut.processReadings([given])).toEqual({})
+  })
+
   xit('should not mutate readings', () => {
     const given = [{
       data: [0],
-      temperature: 0,
+      temperature: 0
     }]
 
     const identicalToGiven = clone(given)
@@ -97,7 +181,6 @@ describe('process readings characterization tests', () => {
     sut.processReadings(given)
 
     expect(given).toEqual(identicalToGiven)
-
   })
 
 })
