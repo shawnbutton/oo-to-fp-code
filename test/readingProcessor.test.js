@@ -5,8 +5,8 @@ const { clone } = require('ramda')
 
 const sut = require('../lib/readingProcessor')
 
-describe('process readings', () => {
-  it('characterization test', () => {
+describe('process readings characterization test', () => {
+  it('matches expected', () => {
     const given = [
       {
         name: 'no data is ignored',
@@ -85,6 +85,10 @@ describe('process readings', () => {
 
     expect(result).toEqual(expected)
   })
+
+})
+
+describe('process readings', () => {
 
   const buildReading = () => {
     return {
