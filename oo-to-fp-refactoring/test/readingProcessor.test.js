@@ -1,8 +1,6 @@
 'use strict'
 /* eslint-env jest */
 
-const { clone } = require('ramda')
-
 const sut = require('../lib/readingProcessor')
 
 describe('process readings characterization test', () => {
@@ -38,8 +36,7 @@ describe('process readings characterization test', () => {
         data: ['abc'],
         temperature: 10,
         type: 'vehicle'
-      }
-      ,
+      },
       {
         name: 'other types are ignored',
         data: ['abc'],
@@ -49,34 +46,34 @@ describe('process readings characterization test', () => {
     ]
 
     const expected = {
-      'environmental': [
+      environmental: [
         {
-          'name': 'environmental is grouped in environmental',
-          'data': [
+          name: 'environmental is grouped in environmental',
+          data: [
             0
           ],
-          'temperature': 32,
-          'type': 'environmental'
+          temperature: 32,
+          type: 'environmental'
         }
       ],
-      'asset': [
+      asset: [
         {
-          'name': 'asset is grouped in asset',
-          'data': [
+          name: 'asset is grouped in asset',
+          data: [
             'abc'
           ],
-          'temperature': 14,
-          'type': 'asset'
+          temperature: 14,
+          type: 'asset'
         }
       ],
-      'vehicle': [
+      vehicle: [
         {
-          'name': 'vehicle type is grouped in vehicle',
-          'data': [
+          name: 'vehicle type is grouped in vehicle',
+          data: [
             'abc'
           ],
-          'temperature': 50,
-          'type': 'vehicle'
+          temperature: 50,
+          type: 'vehicle'
         }
       ]
     }
@@ -85,11 +82,9 @@ describe('process readings characterization test', () => {
 
     expect(result).toEqual(expected)
   })
-
 })
 
 describe('process readings', () => {
-
   const buildReading = () => {
     return {
       data: [0],
@@ -121,11 +116,11 @@ describe('process readings', () => {
     given.type = 'environmental'
 
     const expected = {
-      'environmental': [
+      environmental: [
         {
-          'data': [0],
-          'temperature': 32,
-          'type': 'environmental'
+          data: [0],
+          temperature: 32,
+          type: 'environmental'
         }
       ]
     }
@@ -138,11 +133,11 @@ describe('process readings', () => {
     given.type = 'asset'
 
     const expected = {
-      'asset': [
+      asset: [
         {
-          'data': [0],
-          'temperature': 32,
-          'type': 'asset'
+          data: [0],
+          temperature: 32,
+          type: 'asset'
         }
       ]
     }
@@ -155,11 +150,11 @@ describe('process readings', () => {
     given.type = 'vehicle'
 
     const expected = {
-      'vehicle': [
+      vehicle: [
         {
-          'data': [0],
-          'temperature': 32,
-          'type': 'vehicle'
+          data: [0],
+          temperature: 32,
+          type: 'vehicle'
         }
       ]
     }
@@ -186,5 +181,4 @@ describe('process readings', () => {
   //
   //   expect(given).toEqual(identicalToGiven)
   // })
-
 })

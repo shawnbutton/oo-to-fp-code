@@ -1,7 +1,6 @@
 'use strict'
 
 function processReadings (readings) {
-
   const environmental = []
   const asset = []
   const vehicle = []
@@ -25,9 +24,9 @@ function processReadings (readings) {
 
   const grouped = {}
 
-  if (environmental.length > 0) grouped['environmental'] = environmental
-  if (asset.length > 0) grouped['asset'] = asset
-  if (vehicle.length > 0) grouped['vehicle'] = vehicle
+  if (environmental.length > 0) grouped.environmental = environmental
+  if (asset.length > 0) grouped.asset = asset
+  if (vehicle.length > 0) grouped.vehicle = vehicle
 
   return grouped
 }
