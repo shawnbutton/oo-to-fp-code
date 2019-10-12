@@ -1,34 +1,30 @@
 'use strict'
 
-function processReadings (readings) {
-  const environmental = []
-  const asset = []
-  const vehicle = []
-  for (let i = 0; i < readings.length; i++) {
-    const reading = readings[i]
+const hasData = reading => reading.data.length > 0 && !reading.inactive
 
-    // only process if we received data for reading
-    if (reading.data.length > 0 && !reading.inactive) {
-      // convert temperature readings to fahrenheit
-      reading.temperature = reading.temperature * 1.8 + 32
+const convertToFarenheit = reading => {
+  reading.temperature = reading.temperature * 1.8 + 32
+  return reading
+}
 
-      if (reading.type === 'environmental') {
-        environmental.push(reading)
-      } else if (reading.type === 'asset') {
-        asset.push(reading)
-      } else if (reading.type === 'vehicle') {
-        vehicle.push(reading)
-      }
-    }
-  }
+const allowedTypes = ['environmental', 'asset', 'vehicle']
 
-  const grouped = {}
+const inAllowedTypes = (reading) => {
+  return (allowedTypes.includes(reading.type))
+}
 
-  if (environmental.length > 0) grouped.environmental = environmental
-  if (asset.length > 0) grouped.asset = asset
-  if (vehicle.length > 0) grouped.vehicle = vehicle
-
+const groupByType = (grouped, reading) => {
+  if (!grouped[reading.type]) grouped[reading.type] = []
+  grouped[reading.type].push(reading)
   return grouped
+}
+
+const processReadings = readings => {
+  return readings
+    .filter(hasData)
+    .map(convertToFarenheit)
+    .filter(inAllowedTypes)
+    .reduce(groupByType, {})
 }
 
 module.exports = { processReadings }
