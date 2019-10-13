@@ -11,9 +11,7 @@ const convertToFarenheit = reading => {
 
 const allowedTypes = ['environmental', 'asset', 'vehicle']
 
-const inAllowedTypes = (reading) => {
-  return (allowedTypes.includes(reading.type))
-}
+const inAllowedTypes = reading => allowedTypes.includes(reading.type)
 
 const groupByType = (grouped, reading) => {
   if (!grouped[reading.type]) grouped[reading.type] = []
