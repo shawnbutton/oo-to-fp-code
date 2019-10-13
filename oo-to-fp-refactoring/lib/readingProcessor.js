@@ -1,9 +1,8 @@
 'use strict'
 
 function processReadings (readings) {
-  const environmental = []
-  const asset = []
-  const vehicle = []
+  const grouped = {}
+
   for (let i = 0; i < readings.length; i++) {
     const reading = readings[i]
 
@@ -13,20 +12,17 @@ function processReadings (readings) {
       reading.temperature = reading.temperature * 1.8 + 32
 
       if (reading.type === 'environmental') {
-        environmental.push(reading)
+        if (!grouped.environmental) grouped.environmental = []
+        grouped.environmental.push(reading)
       } else if (reading.type === 'asset') {
-        asset.push(reading)
+        if (!grouped.asset) grouped.asset = []
+        grouped.asset.push(reading)
       } else if (reading.type === 'vehicle') {
-        vehicle.push(reading)
+        if (!grouped.vehicle) grouped.vehicle = []
+        grouped.vehicle.push(reading)
       }
     }
   }
-
-  const grouped = {}
-
-  if (environmental.length > 0) grouped.environmental = environmental
-  if (asset.length > 0) grouped.asset = asset
-  if (vehicle.length > 0) grouped.vehicle = vehicle
 
   return grouped
 }
