@@ -2,8 +2,10 @@
 
 const hasData = reading => reading.data.length > 0 && !reading.inactive
 
+const celciusToFarenheit = temperature => temperature * 1.8 + 32
+
 const convertToFarenheit = reading => {
-  reading.temperature = reading.temperature * 1.8 + 32
+  reading.temperature = celciusToFarenheit(reading.temperature)
   return reading
 }
 
