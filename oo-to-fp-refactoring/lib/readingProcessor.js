@@ -11,15 +11,9 @@ function processReadings (readings) {
       // convert temperature readings to fahrenheit
       reading.temperature = reading.temperature * 1.8 + 32
 
-      if (reading.type === 'environmental') {
-        if (!grouped.environmental) grouped.environmental = []
-        grouped.environmental.push(reading)
-      } else if (reading.type === 'asset') {
-        if (!grouped.asset) grouped.asset = []
-        grouped.asset.push(reading)
-      } else if (reading.type === 'vehicle') {
-        if (!grouped.vehicle) grouped.vehicle = []
-        grouped.vehicle.push(reading)
+      if (['environmental', 'asset', 'vehicle'].includes(reading.type)) {
+        if (!grouped[reading.type]) grouped[reading.type] = []
+        grouped[reading.type].push(reading)
       }
     }
   }
