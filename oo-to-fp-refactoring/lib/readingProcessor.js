@@ -8,9 +8,11 @@ function processReadings (readings) {
 
     // only process if we received data for reading
     if (reading.data.length > 0 && !reading.inactive) {
+
       // convert temperature readings to fahrenheit
       reading.temperature = reading.temperature * 1.8 + 32
 
+      // group allowed types
       if (['environmental', 'asset', 'vehicle'].includes(reading.type)) {
         if (!grouped[reading.type]) grouped[reading.type] = []
         grouped[reading.type].push(reading)
