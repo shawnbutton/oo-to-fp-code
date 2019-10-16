@@ -3,6 +3,8 @@
 
 const sut = require('../lib/readingProcessor')
 
+const { clone } = require('ramda')
+
 describe('process readings characterization test', () => {
   it('matches expected', () => {
     const given = [
@@ -175,10 +177,10 @@ describe('process readings', () => {
   //     temperature: 0
   //   }]
   //
-  //   const identicalToGiven = clone(given)
+  //   const initialState = clone(given)
   //
   //   sut.processReadings(given)
   //
-  //   expect(given).toEqual(identicalToGiven)
+  //   expect(given).toEqual(initialState)
   // })
 })
