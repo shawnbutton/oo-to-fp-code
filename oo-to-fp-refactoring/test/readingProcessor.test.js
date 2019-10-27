@@ -171,16 +171,16 @@ describe('process readings', () => {
     expect(sut.processReadings([given])).toEqual({})
   })
 
-  // it('should not mutate readings', () => {
-  //   const given = [{
-  //     data: [0],
-  //     temperature: 0
-  //   }]
-  //
-  //   const initialState = clone(given)
-  //
-  //   sut.processReadings(given)
-  //
-  //   expect(given).toEqual(initialState)
-  // })
+  xit('should not mutate readings', () => {
+    const given = [{
+      data: [0],
+      temperature: 0
+    }]
+
+    const initialState = clone(given)
+
+    sut.processReadings(given)
+
+    expect(given).toEqual(initialState)
+  })
 })
