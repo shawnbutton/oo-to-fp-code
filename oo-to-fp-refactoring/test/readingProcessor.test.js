@@ -1,6 +1,8 @@
 'use strict'
 /* eslint-env jest */
 
+const { clone } = require('ramda')
+
 const sut = require('../lib/readingProcessor')
 
 describe('process readings characterization test', () => {
@@ -169,16 +171,16 @@ describe('process readings', () => {
     expect(sut.processReadings([given])).toEqual({})
   })
 
-  // it('should not mutate readings', () => {
-  //   const given = [{
-  //     data: [0],
-  //     temperature: 0
-  //   }]
-  //
-  //   const identicalToGiven = clone(given)
-  //
-  //   sut.processReadings(given)
-  //
-  //   expect(given).toEqual(identicalToGiven)
-  // })
+  xit('should not mutate readings', () => {
+    const given = [{
+      data: [0],
+      temperature: 0
+    }]
+
+    const identicalToGiven = clone(given)
+
+    sut.processReadings(given)
+
+    expect(given).toEqual(identicalToGiven)
+  })
 })
