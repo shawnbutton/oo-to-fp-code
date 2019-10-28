@@ -1,26 +1,32 @@
 'use strict'
 
-function processReadings (readings) {
-  const grouped = {}
+const { clone, groupBy, filter, map, pipe } = require('ramda')
 
-  for (let i = 0; i < readings.length; i++) {
-    const reading = readings[i]
+const hasData = reading => reading.data.length > 0 && !reading.inactive
 
-    // only process if we received data for reading
-    if (reading.data.length > 0 && !reading.inactive) {
+const celciusToFahrenheit = temperature => temperature * 1.8 + 32
 
-      // convert temperature readings to fahrenheit
-      reading.temperature = reading.temperature * 1.8 + 32
+const convertToFahrenheit = reading => {
+  const readingClone = clone(reading)
+  readingClone.temperature = celciusToFahrenheit(readingClone.temperature)
+  return readingClone
+}
 
-      // group allowed types
-      if (['environmental', 'asset', 'vehicle'].includes(reading.type)) {
-        if (!grouped[reading.type]) grouped[reading.type] = []
-        grouped[reading.type].push(reading)
-      }
-    }
-  }
+const inAllowedTypes = reading => ['environmental', 'asset', 'vehicle'].includes(reading.type)
 
-  return grouped
+const onlyWithData = filter(hasData)
+const toFahrenheit = map(convertToFahrenheit)
+const onlyAllowedTypes = filter(inAllowedTypes)
+
+const readingType = reading => reading.type
+
+const groupedByType = groupBy(readingType)
+
+const processReadings = readings => {
+  const withData = onlyWithData(readings)
+  const inFahrenheit = toFahrenheit(withData)
+  const allowedTypesOnly = onlyAllowedTypes(inFahrenheit)
+  return groupedByType(allowedTypesOnly)
 }
 
 module.exports = { processReadings }
