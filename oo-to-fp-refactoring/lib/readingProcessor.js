@@ -18,15 +18,8 @@ const onlyWithData = filter(hasData)
 const toFahrenheit = map(convertToFahrenheit)
 const onlyAllowedTypes = filter(inAllowedTypes)
 
-const readingType = reading => reading.type
+const groupedByType = groupBy(reading => reading.type)
 
-const groupedByType = groupBy(readingType)
-
-const processReadings = readings => {
-  const withData = onlyWithData(readings)
-  const inFahrenheit = toFahrenheit(withData)
-  const allowedTypesOnly = onlyAllowedTypes(inFahrenheit)
-  return groupedByType(allowedTypesOnly)
-}
+const processReadings = pipe(onlyWithData, toFahrenheit, onlyAllowedTypes, groupedByType)
 
 module.exports = { processReadings }
