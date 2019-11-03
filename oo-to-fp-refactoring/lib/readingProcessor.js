@@ -14,12 +14,11 @@ const convertToFahrenheit = reading => {
 
 const inAllowedTypes = reading => ['environmental', 'asset', 'vehicle'].includes(reading.type)
 
+const readingType = reading => reading.type
+
 const onlyWithData = filter(hasData)
 const toFahrenheit = map(convertToFahrenheit)
 const onlyAllowedTypes = filter(inAllowedTypes)
-
-const readingType = reading => reading.type
-
 const groupedByType = groupBy(readingType)
 
 const processReadings = readings => {
