@@ -1,10 +1,11 @@
 const inc = x => x + 1
 const square = x => x * x
+const foo = square
 
 const doMath = (fn, x) => fn(x) // function as parameter
 
-doMath(inc, 3) // 4
-doMath(square, 4) // 16
+doMath(inc, 3)     // 4
+doMath(square, 4)  // 16
 
 const multiplyBy = a => b => a * b // returns a function
 
