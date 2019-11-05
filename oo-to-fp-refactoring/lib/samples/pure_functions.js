@@ -6,10 +6,14 @@ const db = require('./db')
 const isActive = id => id.active
 
 // not pure functions
-const process = id => db.find(id).filter(isActive)
+const readFromDb = id => db.find(id)
 
-const write = rec => db.save(rec)
+const toFile = data => fs.writeFile('file.txt', data)
 
 const inc = rec => rec.count++
 
-const log = rec => console.log(rec)
+const getRandom = () => Math.random()
+
+const tossCoin = () => Math.random() < 0.5 ? 'heads' : 'tails'
+
+const lets = () => 'code'
